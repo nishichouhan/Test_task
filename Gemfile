@@ -60,3 +60,4 @@ gem 'omniauth'
 gem "omniauth-rails_csrf_protection"
 gem 'twitter'
 gem 'omniauth-facebook'
+gem 'httparty', '~> 0.18'
