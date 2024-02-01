@@ -1,6 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', 'application', media: 'all' %>
+  <title>Your Page Title</title>
+</head>
+<body>
+
 <% if user_signed_in? %> 
- <div> Welcome <%= current_user.email %> </div> 
-  <%= button_to "Sign out", destroy_user_session_path, method: :delete %> 
+  <div class="container mt-3">
+    <div class="alert alert-success" role="alert">
+      Welcome <%= current_user.email %>
+    </div>
+
+    <div class="card">
+      <div class="card-body">
+        <%= link_to 'Create Post', new_post_path, class: 'btn btn-primary mr-2' %>
+        <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: 'btn btn-danger', id: 'sign-out-btn' %>
+      </div>
+    </div>
+  </div>
 <% else %>
-  <%= button_to "Sign in", new_user_session_path %> 
+  <div class="container mt-3">
+    <div class="jumbotron">
+      <h1 class="display-4">Hello, Guest!</h1>
+      <p class="lead">Please sign in to access more features.</p>
+      <%= button_to "Sign in", new_user_session_path, class: 'btn btn-success btn-lg' %>
+    </div>
+  </div>
 <% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Enable Bootstrap tooltips
+    $('[data-toggle="tooltip"]').tooltip();
+
+    // Add confirmation dialog for "Sign out" button
+    $('#sign-out-btn').on('click', function(e) {
+      e.preventDefault();
+      if (confirm('Are you sure you want to sign out?')) {
+        window.location.href = $(this).attr('href');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
+
+
+

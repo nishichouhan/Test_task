@@ -1,27 +1,70 @@
-<h2>Log in</h2>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <!-- Add Bootstrap CSS (from CDN for simplicity) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+  <!-- Your existing styles -->
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    /* ... your existing styles ... */
+  </style>
+</head>
+<body>
+  <!-- Add an image (optional) -->
+  <div class="container text-center">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp" alt="Your Company Logo" class="img-fluid mb-4" width="800">
   </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
+  <!-- Login form -->
+  <div class="container">
+    <h2>Login</h2>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "mt-3" }) do |f| %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control", autocomplete: "current-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="form-group">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.submit "Log in", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+    <%= button_to "Login with Twitter", user_twitter_omniauth_authorize_path, method: :post, class: "btn btn-primary mt-3" %>
   </div>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end %>
+  <!-- Add Bootstrap JavaScript (Popper.js and Bootstrap JS) from CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
 

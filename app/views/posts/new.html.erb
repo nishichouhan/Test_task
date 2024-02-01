@@ -1,4 +1,26 @@
-<%= form_with(model: @post, url: posts_path, method: :post) do |form| %>
-  <%= form.text_area :content, placeholder: "Compose your post..." %>
-  <%= form.submit "Share Post" %>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%= stylesheet_link_tag 'https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', 'application', media: 'all' %>
+  <title>Your Page Title</title>
+</head>
+<body>
+
+<%= form_with(model: @post, url: posts_path, method: :post, class: 'mt-3') do |form| %>
+  <div class="form-group">
+    <%= form.text_area :content, class: 'form-control', placeholder: "Compose your post..." %>
+  </div>
+  
+  <%= form.submit "Share Post", class: 'btn btn-primary' %>
 <% end %>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  });
+</script>
+
+</body>
+</html>
+
+
+

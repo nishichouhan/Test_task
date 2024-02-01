@@ -1,30 +1,81 @@
-<h2>Sign up</h2>
+  <!-- Add Bootstrap JavaScript (Popper.js and Bootstrap JS) from CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SignUp</title>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <!-- Add Bootstrap CSS (from CDN for simplicity) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  <!-- Your existing styles -->
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    /* ... your existing styles ... */
+  </style>
+</head>
+<body>
+  <!-- Add an image (optional) -->
+  <div class="container text-center">
+    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp" alt="Your Company Logo" class="img-fluid mb-4" width="800">
   </div>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+  <!-- Login form -->
+  <div class="container">
+    <h2>SignUP</h2>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "mt-3" }) do |f| %>
+      <div class="form-group">
+        <%= f.label :email %>
+        <%= f.email_field :email, class: "form-control", autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password %>
+        <%= f.password_field :password, class: "form-control", autocomplete: "current-password" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, class: "form-control", autocomplete: "current-password" %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="form-group">
+          <%= f.check_box :remember_me %>
+          <%= f.label :remember_me %>
+        </div>
+      <% end %>
+
+      <div class="form-group">
+        <%= f.submit "Sign Up", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+
+    <%= render "devise/shared/links" %>
+    <%= button_to "Login with Twitter", user_twitter_omniauth_authorize_path, method: :post, class: "btn btn-primary mt-3" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+  <!-- Add Bootstrap JavaScript (Popper.js and Bootstrap JS) from CDN -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.8/dist/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
-<%= button_to "Register with Facebook", user_facebook_omniauth_authorize_path, method: :post %>
